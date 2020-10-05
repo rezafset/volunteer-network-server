@@ -71,8 +71,9 @@ client.connect(err => {
   
 });
 
+
 app.get('/', (req, res) => {
-  res.send('Welcome to Volunteer Network')
+  res.send('Volunteer Network')
 })
 
-app.listen(PORT);
+app.listen(PORT)
