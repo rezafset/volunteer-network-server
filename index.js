@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const { ObjectId } = require('mongodb');
 const PORT = process.env.PORT || 5000;
-// const port = 5000;
 const MongoClient = require('mongodb').MongoClient;
 
 app.use(bodyParser.json());
@@ -19,8 +18,7 @@ client.connect(err => {
   const eventCollection = client.db("volunteerNetwork").collection("eventInfo");
 
   app.post('/addVolunteer', (req, res) => {
-      // const volunteer = req.body;
-      console.log(volunteer);
+      const volunteer = req.body;
       volunteerCollection.insertOne(volunteer)
       .then(result => {
           res.send(result.insertedCount > 0)
@@ -58,7 +56,6 @@ client.connect(err => {
   // Event Collection
   app.post('/addEvent', (req, res) => {
     const event = req.body;
-    console.log(event);
     eventCollection.insertOne(event)
     .then(result => {
         res.send(result.insertedCount > 0)
@@ -74,9 +71,8 @@ client.connect(err => {
   
 });
 
-
 app.get('/', (req, res) => {
-  res.send('Volunteer Network')
+  res.send('Welcome to Volunteer Network')
 })
 
-app.listen(PORT)
+app.listen(PORT);
